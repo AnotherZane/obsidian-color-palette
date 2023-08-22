@@ -24,7 +24,7 @@
     display: flex;
     flex: 1;
     flex-basis: 0px;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     transition: all 0.1s ease-in-out;
@@ -39,16 +39,19 @@
     flex-basis: 80px;
 }
 
-.palette > div:hover > span {
+.palette > div:hover > span.hidden {
     display: block;
+}
+
+.palette > div > span.hidden {
+    display: none;
 }
 
 /* Child Text */
 .palette > div > span {
-    display: none;
     text-align: center;
-    font-size: 100%;
-    font-weight: bold;
+    font-size: 90%;
+    font-weight: 600;
     color: var(--palette-color);
 }
 

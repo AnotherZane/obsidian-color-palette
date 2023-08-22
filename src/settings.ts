@@ -8,11 +8,13 @@ type direction =
 export interface ColorPaletteSettings {
     paletteHeight: number;
     paletteDirection: direction
+    paletteInformationHidden: boolean
 }
 
 export const DefaultSettings: ColorPaletteSettings = {
     paletteHeight: 150,
     paletteDirection: 'row',
+    paletteInformationHidden: false
 }
 
 export class SettingsTab extends PluginSettingTab {
@@ -53,6 +55,17 @@ export class SettingsTab extends PluginSettingTab {
                         settings.paletteDirection = value as direction;
                         await this.plugin.saveSettings();
                     })
+            })
+
+        new Setting(containerEl)
+            .setName('Hide Information')
+            .setDesc('Should the palette information be hidden when not hovering?')
+            .addToggle((toggle) => {
+                toggle.setValue(settings.paletteInformationHidden)
+                .onChange(async (value) => {
+                    settings.paletteInformationHidden = value;
+                    await this.plugin.saveSettings();
+                })
             })
     }
 
